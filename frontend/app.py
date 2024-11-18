@@ -1,10 +1,11 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session
 import requests
 
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta'
 
-BACKEND_URL = 'http://backend:5000'
+BACKEND_URL =  os.getenv('BACKEND_URL')
 
 @app.route('/')
 def index():
@@ -60,4 +61,4 @@ def dashboard():
     return "¡Bienvenido al Dashboard!"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=os.getenv('PORT'))
